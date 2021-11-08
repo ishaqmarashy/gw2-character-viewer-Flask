@@ -10,7 +10,6 @@ gunicorn = "*"
 pymongo = "*"
 dnspython = "*"
 python-dotenv = "*"
-boto = "*"
 
 [dev-packages]
 
