@@ -2,6 +2,7 @@ from flask import Blueprint, render_template,request
 from mongodb import get_database
 import os
 from dotenv import load_dotenv
+import requests
 load_dotenv()
 views=Blueprint(__name__,"views")
 
@@ -17,10 +18,10 @@ server=get_database()
 def Merge(dict1, dict2):
     res = {**dict1, **dict2}
     return res
-async def  api(arg,apikey):
+def  api(arg,apikey):
     #   My Own API Key you may use yours if you'd like
     url=f'https://api.guildwars2.com/v2/{arg}'
-    response=await request.get(url,data={'access_token':apikey})
+    response= requests.get(url,data={'access_token':apikey})
     print(f"Requesting Data-from-{url}->")
     if(type(response.json())==dict and response.json()['text']=='Invalid access token'):
         return render_template(response)
