@@ -10,7 +10,6 @@ views=Blueprint(__name__,"views")
 #   215E7ED2-8B7D-2842-A5B0-B6F438ECB5998AB6FBC2-59BA-41CC-B54C-B96011624A9B 
 #	551A0BBB-00CF-424F-BFD7-2492760F5933C6974D7A-9F7E-49E6-87EF-8FB7611863D4
 
-#just past your own api key into the url after localhost/myapp to start building your mongodb database... it takes a while...
 
 apikey="215E7ED2-8B7D-2842-A5B0-B6F438ECB5998AB6FBC2-59BA-41CC-B54C-B96011624A9B"
 responseList={}
@@ -21,11 +20,13 @@ def Merge(dict1, dict2):
 def  api(arg,apikey):
     #   My Own API Key you may use yours if you'd like
     url=f'https://api.guildwars2.com/v2/{arg}'
+    print(url)
     if not (url+apikey) in responseList:
         response= requests.get(url,data={'access_token':apikey})
         if not ('https://api.guildwars2.com/v2/characters/' in url):
             responseList[url+apikey]=response.json()
         return response.json()
+    
     return responseList[url+apikey]
     
 def getItem(arg,apikey):
