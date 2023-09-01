@@ -1,21 +1,17 @@
+from flask import Flask
 from flask import Blueprint, render_template, request
 from dotenv import dotenv_values
 from pymongo import MongoClient
 import requests
 
+app = Flask(__name__)
+
 ids={}
-# Load configuration from .env file
 config = dotenv_values(".env")
-
-# Initialize Flask Blueprint
-views = Blueprint(__name__, "views")
-
-# Initialize MongoDB connection
 client = MongoClient(config['CONNECTION_STRING'])
 db = client['gw2_database']
 collection = db['api_cache']
 url='https://api.guildwars2.com/v2/'
-# Global variable to store API key
 apikey = config['ACCESS_TOKEN']
 def insertIntoDB(data,collection):
     print('insert db')
@@ -148,10 +144,10 @@ def build(apikey):
                 items['stats']={'attributes': ids[items['id']]['data']['details']}
     return context
 
-@views.route("/")
+@app.route('/')
 def home():
     return render_template('index.html')
-@views.route('/index', methods = ['GET','POST'])
+@app.route('/index', methods = ['GET','POST'])
 def index():
     if(not request.form.get("api_key")):
         data=build(apikey)
@@ -159,7 +155,7 @@ def index():
     elif(len(request.form.get("api_key"))>0):
         return key(request.form.get("api_key"))
     return render_template("index.html",data='Invalid API-key')
-@views.route('/<api_key>')
+@app.route('/<api_key>')
 def key(api_key):
     data=build(api_key)
     if (data ==''):
