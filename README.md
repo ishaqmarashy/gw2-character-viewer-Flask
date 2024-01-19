@@ -1,4 +1,4 @@
-# Guildwars 2 character viewer
+# Guildwars 2 character viewer (Currently not working due to API changes)
 
 ## Description
 
