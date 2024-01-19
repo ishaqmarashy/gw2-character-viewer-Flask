@@ -12,4 +12,4 @@ Navigate to [https://gw2-character-viewer-flask.vercel.app/](https://gw2-charact
 Simply place your gw2 api key and press go
 ![image](https://github.com/ishaqmarashy/gw2-character-viewer-Flask/assets/34040118/967f1994-6cc0-46b2-b434-10c79e2274ec)
 ![image](https://github.com/ishaqmarashy/gw2-character-viewer-Flask/assets/34040118/464fa9cd-b6aa-4166-b840-9bad345a9c23)
-If you dont have an api key you can generate one on the ![Guildwars 2 website](https://account.arena.net/login?redirect_uri=%2Fapplications)
+If you dont have an api key you can generate one on the [Guildwars 2 website](https://account.arena.net/login)
